@@ -5,7 +5,7 @@ rvm:
 before_install: gem install bundler -v 1.15.4
 
 env:
-  CODECLIMATE_REPO_TOKEN: some-key
+  CODECLIMATE_REPO_TOKEN: 57399c8beec9a8effa05adf0bfdeab416f7707c4302403bf97bec9d4a388745e
 
 services:
   - mongodb
