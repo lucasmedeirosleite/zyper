@@ -12,6 +12,7 @@ require File.expand_path('../../config/environment', __FILE__)
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'database_cleaner'
 require 'factory_girl_rails'
+require 'pry-byebug'
 require 'rspec/rails'
 require 'vcr'
 require 'webmock'
@@ -25,7 +26,7 @@ end
 
 RSpec.configure do |config|
   %i(controller view request).each do |type|
-    config.incilude ::Rails::Controller::Testing::TestProcess, type: type
+    config.include ::Rails::Controller::Testing::TestProcess, type: type
     config.include ::Rails::Controller::Testing::TemplateAssertions, type: type
     config.include ::Rails::Controller::Testing::Integration, type: type
   end
@@ -34,7 +35,7 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
 
   config.before(:suite) do
-    DatabaseCleaner[:mongoid].strategy = :transaction
+    DatabaseCleaner[:mongoid].strategy = :truncation
     DatabaseCleaner[:mongoid].clean_with(:truncation)
   end
 

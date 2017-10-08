@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Zyper</title>
+    <title>.:: Zyper ::.</title>
     <%= csrf_meta_tags %>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
-    <%= yield %>
+    <%= render partial: 'layouts/top_bar' %>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+
+    <%= render partial: 'layouts/footer' %>
   </body>
 </html>
