@@ -11,12 +11,11 @@ class UsersRepository
   end
 
   def save(params)
-    if (user = find_by_username(params[:username]))
-      user.update_attributes(params)
-      user.reload
-    else
-      base_model.create(params)
-    end
+    user = find_by_username(params[:username])
+    return base_model.create(params) unless user
+    
+    user.update_attributes(params)
+    user.reload
   end
 
   private

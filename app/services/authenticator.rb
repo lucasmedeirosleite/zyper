@@ -10,13 +10,13 @@ class Authenticator
   RESPONSE_STATUS = %i[unauthorized internal_error].freeze
 
   def authenticate(params)
-    if (user = authenticate_with_database(params))
-      user
-    else
-      response = authenticate_with_client(params)
-      return if RESPONSE_STATUS.include?(response.status)
-      save_user(params, response.content)
-    end
+    user = authenticate_with_database(params)
+    return user if user
+    
+    response = authenticate_with_client(params)
+    
+    return if RESPONSE_STATUS.include?(response.status)
+    save_user(params, response.content)
   end
 
   private
