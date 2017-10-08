@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   root 'videos#index'
 
   resources :videos, only: [:index, :show]
-  resources :sessions, only: [:new, :create]
+  resources :sessions, only: :new do
+    post :create, as: :login, on: :collection
+  end
 end

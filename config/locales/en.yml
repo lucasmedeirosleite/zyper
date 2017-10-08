@@ -34,3 +34,6 @@ en:
   video:
     not_found: "Video not found"
     subscription_required: "To see the video a login is required"
+  user:
+    invalid_credentials: "Invalid credentials"
+    login_success: "Logged in successfully"
