@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
 
@@ -21,7 +21,7 @@ gem 'rails', '~> 5.1.4'
 gem 'zype_sdk', github: 'lucasmedeirosleite/zype-sdk', branch: 'master'
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'dotenv-rails'
   gem 'pry-byebug'
   gem 'rubocop', '~> 0.50.0'
@@ -38,7 +38,7 @@ group :test do
   gem 'coveralls'
   gem 'database_cleaner'
   gem 'factory_girl_rails', '~> 4.8'
-  gem 'mongoid-rspec', github: 'mongoid-rspec/mongoid-rspec' 
+  gem 'mongoid-rspec', github: 'mongoid-rspec/mongoid-rspec'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'vcr'
@@ -46,4 +46,4 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

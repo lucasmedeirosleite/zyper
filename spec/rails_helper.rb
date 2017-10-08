@@ -9,7 +9,7 @@ require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'database_cleaner'
 require 'factory_girl_rails'
 require 'rspec/rails'
@@ -24,7 +24,7 @@ VCR.configure do |config|
 end
 
 RSpec.configure do |config|
-  [:controller, :view, :request].each do |type|
+  %i[controller view request].each do |type|
     config.include ::Rails::Controller::Testing::TestProcess, type: type
     config.include ::Rails::Controller::Testing::TemplateAssertions, type: type
     config.include ::Rails::Controller::Testing::Integration, type: type

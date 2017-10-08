@@ -12,12 +12,13 @@ require 'sprockets/railtie'
 Bundler.require(*Rails.groups)
 
 module Zyper
+  # Public: Application config
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
 
-    config.autoload_paths += %W(#{config.root}/app/repositories
-                                #{config.root}/app/services})
+    config.autoload_paths += %W[#{config.root}/app/repositories
+                                #{config.root}/app/services}]
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
