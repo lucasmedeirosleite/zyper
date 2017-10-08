@@ -1,0 +1,5 @@
+<% if video.subscription_required %>
+  <%= render partial: 'videos/player_paid', locals: { video_id: video.id } %>
+<% else %>
+  <%= render partial: 'videos/player_free', locals: { video_id: video.id } %>
+<% end %>

@@ -91,4 +91,79 @@ RSpec.describe VideosRepository, type: :repositories do
       end
     end
   end
+
+  describe '#find' do
+    subject(:find_video) do
+      repository.find(video_id)
+    end
+
+    let(:video_id) { 'a-video-id' }
+
+    before do
+      allow(client).to receive(:video).with(video_id).and_return(video)
+    end
+
+    context 'when unauthorized' do
+      let(:video) do 
+        double(:response, status: :unauthorized, content: double(:content))
+      end
+
+      it 'returns no video' do
+        expect(find_video).to be_nil
+      end
+    end
+
+    context 'when internal error' do
+      let(:video) do 
+        double(:response, status: :internal_error, content: double(:content))
+      end
+
+      it 'returns no video' do
+        expect(find_video).to be_nil
+      end
+    end
+    
+    context 'when there is no video' do
+      let(:video) do 
+        double(:response, status: :not_found, content: double(:content))
+      end
+      
+      it 'returns no video' do
+        expect(find_video).to be_nil
+      end
+    end
+
+    context 'when there is a video' do
+      let(:video) do
+        double(:response, status: :ok, content: response)
+      end
+      let(:response) do
+        {
+          'response' => data
+        }
+      end
+      let(:data) do
+        {
+          '_id' => '1',
+          'title' => 'A title',
+          'subscription_required' => false,
+          'thumbnails' => images
+        }
+      end
+      let(:images) do
+        [
+          { 'url' => 'http://service.com/1.jpg' }
+        ]
+      end
+
+      it 'returns a video' do
+        video = find_video 
+        expect(video).to be_a(Video)
+        expect(video.id).not_to be_empty
+        expect(video.title).not_to be_empty
+        expect(video.thumbnail).not_to be_empty
+        expect(video.subscription_required).not_to be_nil
+      end
+    end
+  end
 end

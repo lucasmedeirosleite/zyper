@@ -1,0 +1,4 @@
+<div id="zype_<%= video_id %>">
+</div>
+<% video_source = "https://player.zype.com/embed/#{video_id}.js?autoplay=true&app_key=#{ZypeSDK.app_key}" %>
+<script src="<%= video_source %>" type="text/javascript"></script>

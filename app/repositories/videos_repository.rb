@@ -8,15 +8,19 @@ class VideosRepository
 
   def all
     response = client.videos
-    case response.status
-    when :unauthorized, :internal_error
-      []
-    else
-      videos_from(response.content['response'])
-    end
+    return [] if RESPONSE_STATUSES.include?(response.status)
+    videos_from(response.content['response'])
+  end
+
+  def find(video_id)
+    response = client.video(video_id)
+    return if RESPONSE_STATUSES.include?(response.status)
+    Video.new(response.content['response'])
   end
 
   private
+
+  RESPONSE_STATUSES = %i(unauthorized not_found internal_error)
 
   attr_reader :client
 

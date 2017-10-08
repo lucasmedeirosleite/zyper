@@ -3,5 +3,7 @@
        alt="<%= video.title %>" 
        class="circle">
   <span class="title"><%= video.title %></span>
-  <a href="#!" class="secondary-content"><i class="material-icons">send</i></a>
+  <%= link_to video_path(id: video.id), class: 'secondary-content' do %>
+    <i class="material-icons">send</i>
+  <% end %>
 </li>

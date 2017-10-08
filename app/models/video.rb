@@ -9,7 +9,7 @@ class Video
   def initialize(options = {})
     @id = options['_id']
     @title = options['title']
-    @thumbnail = options['thumbnails'][0].try(:[], 'url')
+    @thumbnail = options.try(:[], 'thumbnails').try(:[], 0).try(:[], 'url')
     @subscription_required = options['subscription_required']
   end
 end

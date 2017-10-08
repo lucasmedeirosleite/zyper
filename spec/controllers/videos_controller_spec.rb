@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe VideosController, type: :controller do
-  describe 'GET #videos' do
+  describe 'GET #index' do
     subject(:get_videos) do
       get :index
     end
@@ -39,6 +39,64 @@ RSpec.describe VideosController, type: :controller do
       it 'assigns videos to the view' do
         get_videos
         expect(assigns[:videos]).to eq(videos)
+      end
+    end
+  end
+
+  describe 'GET #show' do
+    subject(:get_video) do
+      get :show, params: { id: video_id }
+    end
+
+    let(:video_id) { 'a-video-id' }
+
+    before do
+      allow_any_instance_of(VideosRepository).to receive(:find)
+        .with(video_id)
+        .and_return(video)
+
+      get_video
+    end
+
+    context 'when video does no exist' do
+      let(:video) { nil }
+
+      it 'redirects to videos page' do
+        expect(response).to redirect_to(videos_path)
+      end
+
+      it 'sets a flash message saying video not found' do
+        expect(flash[:alert]).to eq('Video not found')
+      end
+    end
+    
+    context 'when video exists' do
+      let(:video) do
+        Video.new('_id' => video_id, 'title' => 'A title', 'subscription_required' => subscription)
+      end
+      
+      context 'when video does not require subscription' do
+        let(:subscription) { false }
+
+        it 'renders the video page' do
+          expect(response).to render_template(:show)
+        end
+
+        it 'assings video variable' do
+          expect(assigns[:video]).to eq(video)
+        end
+      end
+
+      context 'when video required subscription' do
+        let(:subscription) { true }
+
+        it 'redirects to login page' do
+          expect(response).to redirect_to(new_session_path)
+        end
+
+        it 'set flashs with a login required message' do
+          expect(flash[:notice]).to eq('To see the video a login is required')
+        end
       end
     end
   end

@@ -31,3 +31,6 @@
 
 en:
   hello: "Hello world"
+  video:
+    not_found: "Video not found"
+    subscription_required: "To see the video a login is required"
