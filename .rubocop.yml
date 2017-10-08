@@ -2,7 +2,7 @@
 # It was based in some configurations from: https://github.com/bbatsov/rubocop/tree/master/config
 
 AllCops:
-  TargetRubyVersion: 2.4.2
+  TargetRubyVersion: 2.4
 
 Metrics/LineLength:
   Max: 100
