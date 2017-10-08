@@ -7,10 +7,10 @@ class Authenticator
     @repository = repository
   end
 
-  RESPONSE_STATUS = %i(unauthorized internal_error)
+  RESPONSE_STATUS = %i[unauthorized internal_error].freeze
 
   def authenticate(params)
-    if user = authenticate_with_database(params)
+    if (user = authenticate_with_database(params))
       user
     else
       response = authenticate_with_client(params)
@@ -29,7 +29,7 @@ class Authenticator
 
   def authenticate_with_database(params)
     user = repository.find_by_username(params[:username])
-    return user.authenticate(params[:password]) if user && user.new_token?
+    return user.authenticate(params[:password]) if user&.new_token?
   end
 
   def save_user(params, response_params)

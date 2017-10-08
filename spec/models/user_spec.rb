@@ -10,7 +10,7 @@ RSpec.describe User, type: :model do
     it { is_expected.to respond_to(:created_at) }
     it { is_expected.to respond_to(:access_token) }
   end
-  
+
   describe 'validations' do
     it { is_expected.to validate_presence_of(:username) }
     it { is_expected.to validate_uniqueness_of(:username) }

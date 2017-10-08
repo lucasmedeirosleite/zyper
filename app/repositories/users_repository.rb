@@ -11,7 +11,7 @@ class UsersRepository
   end
 
   def save(params)
-    if user = find_by_username(params[:username])
+    if (user = find_by_username(params[:username]))
       user.update_attributes(params)
       user.reload
     else

@@ -20,7 +20,7 @@ class VideosRepository
 
   private
 
-  RESPONSE_STATUSES = %i(unauthorized not_found internal_error)
+  RESPONSE_STATUSES = %i[unauthorized not_found internal_error].freeze
 
   attr_reader :client
 

@@ -12,7 +12,7 @@ RSpec.describe Authenticator do
 
   before { Timecop.freeze(now) }
   after { Timecop.return }
-  
+
   describe '#authenticate' do
     subject(:authenticate) { authenticator.authenticate(params) }
     let(:params) do
@@ -45,7 +45,7 @@ RSpec.describe Authenticator do
           double(:response, status: :ok, content: content)
         end
         let(:content) do
-          { 
+          {
             'access_token' => '123',
             'token_type' => 'bearer',
             'expires_in' => 123,
@@ -69,7 +69,7 @@ RSpec.describe Authenticator do
       context 'with invalid credentials' do
         let(:user_response) { double(:response, status: :unauthorized, content: double(:content)) }
         let(:invalid) { 'invalidpass' }
-        
+
         before do
           FactoryGirl.create(:user, username: username, password: invalid)
         end
@@ -83,7 +83,10 @@ RSpec.describe Authenticator do
         let(:user_response) { double(:user_response) }
 
         before do
-          FactoryGirl.create(:user, username: username, password: password, created_at: creation_date)
+          FactoryGirl.create(:user,
+                             username: username,
+                             password: password,
+                             created_at: creation_date)
         end
 
         context 'when ttl not reached' do
@@ -94,7 +97,7 @@ RSpec.describe Authenticator do
             expect(authenticate).to be_a(User)
           end
         end
-        
+
         context 'when ttl reached' do
           let(:creation_date) { now - 5.days }
 
@@ -102,7 +105,7 @@ RSpec.describe Authenticator do
             double(:response, status: :ok, content: content)
           end
           let(:content) do
-            { 
+            {
               'access_token' => '123',
               'token_type' => 'bearer',
               'expires_in' => 123,
@@ -121,7 +124,7 @@ RSpec.describe Authenticator do
           end
 
           it 'updates the previous user model' do
-            expect { authenticate }.not_to change { User.count }
+            expect { authenticate }.not_to(change { User.count })
           end
         end
       end

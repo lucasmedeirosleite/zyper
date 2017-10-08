@@ -22,7 +22,7 @@ RSpec.describe SessionsController, type: :controller do
       post :create, params: { user: params }
     end
     let(:params) { {} }
-    
+
     before do
       allow_any_instance_of(Authenticator).to receive(:authenticate)
         .with(params)
@@ -43,11 +43,11 @@ RSpec.describe SessionsController, type: :controller do
         expect(flash[:alert]).to eq('Invalid credentials')
       end
     end
-    
+
     context 'when credentials are valid' do
       let(:user) { double(:user, id: 'an-id') }
       let(:params) { { username: 'valid@example.com', password: 'a-valid-pass' } }
-      
+
       it 'redirects to videos page' do
         expect(response).to redirect_to(videos_path)
       end

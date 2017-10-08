@@ -3,12 +3,12 @@
 # Public: Authentication mechanism controller
 class SessionsController < ApplicationController
   def new
-    return redirect_to videos_path if current_user 
+    return redirect_to videos_path if current_user
     @user = User.new
   end
 
   def create
-    if user = Authenticator.new.authenticate(user_params.to_h)
+    if (user = Authenticator.new.authenticate(user_params.to_h))
       session[:user_id] = user.id
       redirect_to videos_path, notice: I18n.t('user.login_success')
     else

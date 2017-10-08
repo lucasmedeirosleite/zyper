@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe VideosRepository, type: :repositories do
   subject(:repository) { VideosRepository.new(client: client) }
-  
+
   let(:client) { double(:client) }
 
   describe '#all' do
@@ -15,7 +15,7 @@ RSpec.describe VideosRepository, type: :repositories do
     end
 
     context 'when unauthorized' do
-      let(:videos) do 
+      let(:videos) do
         double(:response, status: :unauthorized, content: double(:content))
       end
 
@@ -25,7 +25,7 @@ RSpec.describe VideosRepository, type: :repositories do
     end
 
     context 'when internal error' do
-      let(:videos) do 
+      let(:videos) do
         double(:response, status: :internal_error, content: double(:content))
       end
 
@@ -33,9 +33,9 @@ RSpec.describe VideosRepository, type: :repositories do
         expect(all).to be_empty
       end
     end
-    
+
     context 'when there is no videos' do
-      let(:videos) do 
+      let(:videos) do
         double(:response, status: :ok, content: response)
       end
       let(:response) do
@@ -53,7 +53,7 @@ RSpec.describe VideosRepository, type: :repositories do
       end
       let(:response) do
         {
-          'response' => [ video ],
+          'response' => [video],
           'pagination' => pagination
         }
       end
@@ -104,7 +104,7 @@ RSpec.describe VideosRepository, type: :repositories do
     end
 
     context 'when unauthorized' do
-      let(:video) do 
+      let(:video) do
         double(:response, status: :unauthorized, content: double(:content))
       end
 
@@ -114,7 +114,7 @@ RSpec.describe VideosRepository, type: :repositories do
     end
 
     context 'when internal error' do
-      let(:video) do 
+      let(:video) do
         double(:response, status: :internal_error, content: double(:content))
       end
 
@@ -122,12 +122,12 @@ RSpec.describe VideosRepository, type: :repositories do
         expect(find_video).to be_nil
       end
     end
-    
+
     context 'when there is no video' do
-      let(:video) do 
+      let(:video) do
         double(:response, status: :not_found, content: double(:content))
       end
-      
+
       it 'returns no video' do
         expect(find_video).to be_nil
       end
@@ -157,7 +157,7 @@ RSpec.describe VideosRepository, type: :repositories do
       end
 
       it 'returns a video' do
-        video = find_video 
+        video = find_video
         expect(video).to be_a(Video)
         expect(video.id).not_to be_empty
         expect(video.title).not_to be_empty

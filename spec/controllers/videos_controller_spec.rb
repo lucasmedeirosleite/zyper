@@ -69,12 +69,12 @@ RSpec.describe VideosController, type: :controller do
         expect(flash[:alert]).to eq('Video not found')
       end
     end
-    
+
     context 'when video exists' do
       let(:video) do
         Video.new('_id' => video_id, 'title' => 'A title', 'subscription_required' => subscription)
       end
-      
+
       context 'when video does not require subscription' do
         let(:subscription) { false }
 
