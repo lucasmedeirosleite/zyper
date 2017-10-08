@@ -1,15 +1,27 @@
 # frozen_string_literal: true
 
+if ENV['COVERAGE']
+  require 'coveralls'
+  Coveralls.wear!
+end
+
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 
 abort("The Rails environment is running in production mode!") if Rails.env.production?
-require 'rspec/rails'
-require 'factory_girl_rails'
 require 'database_cleaner'
+require 'factory_girl_rails'
+require 'rspec/rails'
+require 'vcr'
+require 'webmock'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+
+VCR.configure do |config|
+  config.cassette_library_dir = 'spec/cassettes'
+  config.hook_into :webmock
+end
 
 RSpec.configure do |config|
   [:controller, :view, :request].each do |type|

@@ -41,6 +41,8 @@ group :test do
   gem 'mongoid-rspec', github: 'mongoid-rspec/mongoid-rspec' 
   gem 'rails-controller-testing'
   gem 'rspec-rails'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
