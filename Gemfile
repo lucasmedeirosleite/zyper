@@ -7,7 +7,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'caze', '~> 0.2.1'
+gem 'bcrypt'
 
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'materialize-sass', '~> 0.100.2'
@@ -41,6 +41,7 @@ group :test do
   gem 'mongoid-rspec', github: 'mongoid-rspec/mongoid-rspec'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
+  gem 'timecop'
   gem 'vcr'
   gem 'webmock'
 end

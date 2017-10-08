@@ -3,7 +3,11 @@
     <%= link_to '&nbsp;&nbsp;Zyper'.html_safe, root_path, class: 'brand-logo' %>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><%= link_to 'Videos', videos_path %></li>
-      <li><%= link_to 'Login', new_session_path %></li>
+      <% if current_user %>
+        <li><%= link_to 'Logout', new_session_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to 'Login', new_session_path %></li>
+      <% end %>
     </ul>
   </div>
 </nav>

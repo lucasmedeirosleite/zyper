@@ -1,0 +1,5 @@
+<div id="zype_<%= video_id %>"></div>
+<% access_token = current_user.access_token %>
+<% video_source = "https://player.zype.com/embed/#{video_id}.js?autoplay=true&access_token=#{access_token}" %>
+<script src="<%= video_source %>"   
+        type="text/javascript"></script>

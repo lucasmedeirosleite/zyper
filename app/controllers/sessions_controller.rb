@@ -3,6 +3,7 @@
 # Public: Authentication mechanism controller
 class SessionsController < ApplicationController
   def new
+    return redirect_to videos_path if current_user 
     @user = User.new
   end
 
@@ -13,6 +14,12 @@ class SessionsController < ApplicationController
     else
       redirect_to new_session_path, alert: I18n.t('user.invalid_credentials')
     end
+  end
+
+  def destroy
+    reset_session
+    reset_current_user
+    redirect_to videos_path, notice: I18n.t('user.logout_success')
   end
 
   private

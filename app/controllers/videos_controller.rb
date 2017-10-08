@@ -8,19 +8,25 @@ class VideosController < ApplicationController
 
   def show
     @video = VideosRepository.new.find(params[:id])
-    video_page(@video)
+    render_video_page
   end
 
   private
 
-  def video_page(video)
-    return redirect_to videos_path, alert: message(video) unless video
-    return redirect_to new_session_path, notice: message(video) if video.subscription_required
+  attr_reader :video
+
+  def render_video_page
+    return redirect_to videos_path, alert: message unless video
+    return redirect_to new_session_path, notice: message if cannot_render_page?
     render 'videos/show'
   end
 
-  def message(video)
+  def message
     return I18n.t('video.not_found') unless video
     I18n.t('video.subscription_required')
+  end
+
+  def cannot_render_page?
+    video.subscription_required && !current_user
   end
 end

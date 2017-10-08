@@ -12,8 +12,10 @@ require File.expand_path('../../config/environment', __FILE__)
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'database_cleaner'
 require 'factory_girl_rails'
+require 'mongoid-rspec'
 require 'pry-byebug'
 require 'rspec/rails'
+require 'timecop'
 require 'vcr'
 require 'webmock'
 
@@ -30,6 +32,8 @@ RSpec.configure do |config|
     config.include ::Rails::Controller::Testing::TemplateAssertions, type: type
     config.include ::Rails::Controller::Testing::Integration, type: type
   end
+
+  config.include Mongoid::Matchers, type: :model
 
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
