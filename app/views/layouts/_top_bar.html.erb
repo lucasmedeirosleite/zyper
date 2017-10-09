@@ -4,7 +4,7 @@
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><%= link_to 'Videos', videos_path %></li>
       <% if current_user %>
-        <li><%= link_to 'Logout', new_session_path, method: :delete %></li>
+        <li><%= link_to 'Logout', logout_sessions_path, method: :delete %></li>
       <% else %>
         <li><%= link_to 'Login', new_session_path %></li>
       <% end %>
