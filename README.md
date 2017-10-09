@@ -33,12 +33,12 @@ Also to uncouple somethings a gem was created just to to the communication with 
 
 The application has only four actions which are described below:
  
- ![image](https://1drv.ms/i/s!Ag2ZMWdqyG2ghIA-RoSYuUQeU51BRQ)
+ ![image](videos.png)
  
- ![image](https://1drv.ms/i/s!Ag2ZMWdqyG2ghIBAoGQA1nvL3Otm-Q)
+ ![image](video.png)
  
- ![image](https://1drv.ms/i/s!Ag2ZMWdqyG2ghIA_6pC9fZSQwFEtwQ)
+ ![image](logout.png)
  
- ![image](https://1drv.ms/i/s!Ag2ZMWdqyG2ghIBBurVENTa499tq9g)
+ ![image](login.png)
  
  
