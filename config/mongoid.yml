@@ -26,7 +26,7 @@ production:
     default:
       database: zyper_production
       hosts:
-        - mongodb://heroku_703462mh:rpb4kcuajjbirk9ofohdqfbcfq@ds013475.mlab.com:13475/heroku_703462mh
+        - <%= ENV['MONGODB_URI'] %>
       options:
   options:
     raise_not_found_error: falsepro
