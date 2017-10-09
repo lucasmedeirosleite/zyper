@@ -8,7 +8,9 @@ RSpec.describe VideosController, type: :controller do
       get :index
     end
 
-    let(:videos) { [] }
+    let(:videos) { double(:result, data: data, pagination: pagination) }
+    let(:data) { [] }
+    let(:pagination) { nil }
 
     before do
       allow_any_instance_of(VideosRepository).to receive(:all).and_return(videos)
@@ -20,25 +22,26 @@ RSpec.describe VideosController, type: :controller do
     end
 
     context 'when has no videos' do
-      let(:videos) { [] }
-
       it 'assings an empty array of videos' do
         get_videos
-        expect(assigns[:videos]).to be_empty
+        expect(assigns[:videos].data).to be_empty
+        expect(assigns[:videos].pagination).to be_nil
       end
     end
 
     context 'when there are videos' do
-      let(:videos) do
+      let(:data) do
         [
           double(:video, id: 1, title: 'A title 1', thumbnail: 'http://service.com/1.jpg'),
           double(:video, id: 2, title: 'A title 2', thumbnail: 'http://service.com/2.jpg')
         ]
       end
+      let(:pagination) { double(:pagination) }
 
       it 'assigns videos to the view' do
         get_videos
-        expect(assigns[:videos]).to eq(videos)
+        expect(assigns[:videos].data).to eq(data)
+        expect(assigns[:videos].pagination).to eq(pagination)
       end
     end
   end

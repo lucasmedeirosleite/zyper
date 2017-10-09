@@ -2,9 +2,13 @@
   <div class="col s12">
     <h2 class="header">Videos<h2>
     <ul class="collection">
-      <% @videos.each do |video| %>
+      <% @videos.data.each do |video| %>
         <%= render partial: 'videos/video', locals: { video: video }%>
       <% end %>
     </ul>
+  </div>
+  
+  <div class="col s12">
+    <%= render partial: 'layouts/pagination', locals: { pagination: @videos.pagination } %>
   </div>
 </div>

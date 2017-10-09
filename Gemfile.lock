@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/lucasmedeirosleite/zype-sdk.git
-  revision: e366332d0b71df729c48bdfe16fe416acd8ae671
+  revision: a116581faaf299d641292cbc6411592c5dec077c
   branch: master
   specs:
     zype_sdk (0.1.0)

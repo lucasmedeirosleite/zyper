@@ -3,7 +3,7 @@
 # Public: Controller to load videos information
 class VideosController < ApplicationController
   def index
-    @videos = VideosRepository.new.all
+    @videos = VideosRepository.new.all(page: params[:page] || 1)
   end
 
   def show

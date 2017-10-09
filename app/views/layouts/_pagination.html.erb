@@ -1,0 +1,9 @@
+<ul class="pagination">
+  <% (1..pagination[:pages]).each do |page| %>
+    <% active_class = page == pagination[:current] ? 'active' : 'waves-effect' %>
+    
+    <li class="<%= active_class %>">
+      <%= link_to page, videos_path(page: page) %>
+    </li>
+  <% end %>
+</ul>

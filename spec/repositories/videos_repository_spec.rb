@@ -43,7 +43,8 @@ RSpec.describe VideosRepository, type: :repositories do
       end
 
       it 'returns an empty collection of videos' do
-        expect(all).to be_empty
+        expect(all.data).to be_empty
+        expect(all.pagination).to be_empty
       end
     end
 
@@ -72,22 +73,24 @@ RSpec.describe VideosRepository, type: :repositories do
       end
       let(:pagination) do
         {
-          'current': 1,
-          'previous': nil,
-          'next': nil,
-          'per_page': 10,
-          'pages': 1
+          'current' => 1,
+          'previous' => nil,
+          'next' => nil,
+          'per_page' => 10,
+          'pages' => 1
         }
       end
 
       it 'returns a collection of videos' do
-        all.each do |video|
+        all.data.each do |video|
           expect(video).to be_a(Video)
           expect(video.id).not_to be_empty
           expect(video.title).not_to be_empty
           expect(video.thumbnail).not_to be_empty
           expect(video.subscription_required).not_to be_nil
         end
+
+        expect(all.pagination).to eq(pagination)
       end
     end
   end
