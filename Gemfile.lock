@@ -308,5 +308,8 @@ DEPENDENCIES
   webmock
   zype_sdk!
 
+RUBY VERSION
+   ruby 2.4.2p198
+
 BUNDLED WITH
    1.15.4
