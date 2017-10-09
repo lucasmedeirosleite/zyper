@@ -24,9 +24,7 @@ test:
 production:
   clients:
     default:
-      database: zyper_production
-      hosts:
-        - <%= ENV['MONGODB_URI'] %>
-      options:
+      uri: <%= ENV['MONGODB_URI'] %>
+  
   options:
     raise_not_found_error: falsepro
