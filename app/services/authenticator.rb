@@ -12,9 +12,9 @@ class Authenticator
   def authenticate(params)
     user = authenticate_with_database(params)
     return user if user
-    
+
     response = authenticate_with_client(params)
-    
+
     return if RESPONSE_STATUS.include?(response.status)
     save_user(params, response.content)
   end

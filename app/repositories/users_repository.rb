@@ -13,7 +13,7 @@ class UsersRepository
   def save(params)
     user = find_by_username(params[:username])
     return base_model.create(params) unless user
-    
+
     user.update_attributes(params)
     user.reload
   end

@@ -23,7 +23,7 @@ class VideosRepository
   private
 
   RESPONSE_STATUSES = %i[unauthorized not_found internal_error].freeze
-  
+
   VideosResult = Struct.new(:data, :pagination)
 
   attr_reader :client
