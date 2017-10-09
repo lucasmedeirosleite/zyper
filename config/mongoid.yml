@@ -20,3 +20,13 @@ test:
         max_pool_size: 1
   options:
     raise_not_found_error: false
+
+production:
+  clients:
+    default:
+      database: zyper_production
+      hosts:
+        - mongodb://heroku_703462mh:rpb4kcuajjbirk9ofohdqfbcfq@ds013475.mlab.com:13475/heroku_703462mh
+      options:
+  options:
+    raise_not_found_error: falsepro
