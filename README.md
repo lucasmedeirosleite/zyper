@@ -28,8 +28,8 @@ After the sign in (which is done via Zype WEB API too) the user can see the deta
 
 ## Architecture
 
-The **Zyper** application was built flowwing principles like thin controllers and Domain Driven Design.
-Also to uncouple somethings a gem was created just to to the communication with the Zype WEB API, and it's called [zype-sdk](https://github.com/lucasmedeirosleite/zype-sdk).
+The **Zyper** application was built following principles like thin controllers and Domain Driven Design.
+Also to uncouple somethings a gem was created just to do the communication beetween the Zype WEB API, and it's called [zype-sdk](https://github.com/lucasmedeirosleite/zype-sdk).
 
 The application has only four actions which are described below:
  
